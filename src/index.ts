@@ -21,7 +21,7 @@ async function main() {
             const config = LANG_CONFIG[language as LanguageKey];
             const file = await writeCodeToRoom(code, config.ext, roomID);
             const output = await executeCode(file, config);
-            await deleteRoom(file.path);
+            await deleteRoom(roomID);
 
             await redisClient.publish(`submission_result`, JSON.stringify({
                 roomID,
